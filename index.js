@@ -1,12 +1,14 @@
 // TODO: Include packages needed for this application
 var inquirer = require('inquirer');
+var fs = require('fs');
 var generateMarkdown = require("./utils/generateMarkdown");
 
 // TODO: Create an array of questions for user input
 const questions = [
     {name: 'creatorName',
-    message: 'What is your full name?',
-    type: 'input'},
+    type: 'input',
+    message: 'What is your full name?'
+    },
     {name: 'email',
     message: 'What is your email address?',
     type: 'input'},
@@ -44,7 +46,8 @@ const questions = [
         'Apache License V2.0', 
         'MIT License', 
         'GNU General Public V3.0', 
-        'Creative Commons Attribute Share'
+        'Creative Commons Attribute Share',
+        'No License'
     ]},
     {name: 'Features',
     message: 'Please describe any special features in your project:',
@@ -55,17 +58,25 @@ const questions = [
 
 ];
 
+
+   
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-
+    fs.writeFile(fileName, data, err => {
+        if(err) {
+            console.error(err)
+            return
+        }
+    });
 }
 
 // TODO: Create a function to initialize app
 function init() {
-    var generated;
-    inquirer.prompt(questions).then((answers) =>
-    generated = generateMarkdown(answers)
-    ).catch((error) =>{
+    var generatedData;
+    inquirer.prompt(questions).then((answers) => {
+    generatedData = generateMarkdown(answers);
+    writeToFile('./utils/ReadMe.md', generatedData);
+    }).catch((error) =>{
         if(error.isTtyError){
             console.log('error b/c prompt couldn\'t be rendered')
         } else {
@@ -73,8 +84,7 @@ function init() {
         }
     }
     );
-
-    console.log(generated);
+   
 }
 
 // Function call to initialize app
