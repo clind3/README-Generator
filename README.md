@@ -23,6 +23,10 @@
 
   To use this application you will be working directly in your coding terminal. You will run 'node server.js' and then will begin to answer the prompts. Once complete a new ReadMe.md file will be created within the utils folder. If you are wanting to include links within your ReadMe make sure to format your prompt response to the markdown link standard. If you would like more clarification on how to use this application please watch the Instructional Video.
 
+https://user-images.githubusercontent.com/73320520/126582405-ddf901b3-cf7f-4087-b4b0-cd3577e90987.mp4
+
+
+
   ## Credits
 
   Celina Lind
